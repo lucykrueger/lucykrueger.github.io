@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lucy Krueger</title>
+<meta name="description" content="Lucy Krueger: data analyst in Durham, NC, working on voting rights, housing, environmental justice, and justice reform in the South.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<!--
+  HOW TO EDIT THIS SITE
+  - Your photo: upload a square-ish photo to the repo named  me.jpg  (until then, your initials show).
+  - Your résumé: upload it named  resume.pdf
+  - Projects live in the PROJECTS list near the bottom (in the <script>). Copy a { ... } block to add one.
+  - "More work", publications, and map places are in the lists right after it.
+-->
+<style>
+:root {
+  /* Layout idea: a field map. Deep forest-green bands with tan contour lines frame sand-colored pages of work. */
+  --forest: #1e3a2c;
+  --forest-deep: #132820;
+  --moss: #4d6a4f;
+  --sage: #9db394;
+  --tan: #cfb68b;
+  --sand: #f2ebdd;
+  --paper: #faf6ee;
+  --ink: #1d2a22;
+  --muted: #5f6b5f;
+  --line: #ddd2bd;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Figtree", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--sand); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.65; }
+a { color: var(--forest); text-decoration-color: var(--tan); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+a:hover { text-decoration-color: var(--forest); }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--tan); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+h1, h2, h3 { text-wrap: balance; }
+
+/* ---------- Top band ---------- */
+.band { background: var(--forest); color: var(--sand); position: relative; overflow: hidden; }
+.band a { color: var(--sand); }
+.contours { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.band > .wrap { position: relative; }
+nav.top { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; flex-wrap: wrap; }
+nav.top .name { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; text-decoration: none; }
+nav.top ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 24px; flex-wrap: wrap; }
+nav.top ul a { text-decoration: none; opacity: 0.85; font-weight: 500; }
+nav.top ul a:hover { opacity: 1; text-decoration: underline; text-decoration-color: var(--tan); }
+
+.hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; padding: 36px 0 64px; }
+.who { margin-bottom: 18px; }
+.photo { width: 104px; height: 104px; border-radius: 50%; flex: none; border: 3px solid var(--tan); background: var(--moss); display: grid; place-items: center; overflow: hidden; font-family: var(--font-display); font-size: 2.2rem; color: var(--sand); }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.who .role { color: var(--tan); font-weight: 500; line-height: 1.4; }
+.hero h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(2.3rem, 5vw, 3.5rem); line-height: 1.08; margin: 0 0 18px; letter-spacing: -0.01em; }
+.hero h1 em { font-style: italic; color: var(--tan); font-weight: 400; }
+.hero p { margin: 0 0 14px; max-width: 34em; color: #dfe6da; font-size: 1.08rem; }
+.buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.btn { display: inline-block; padding: 10px 18px; border-radius: 6px; font-weight: 600; text-decoration: none; border: 1.5px solid var(--tan); color: var(--sand); }
+.btn:hover { background: rgba(207, 182, 139, 0.15); }
+.btn.solid { background: var(--tan); color: var(--forest-deep); }
+.btn.solid:hover { background: #dcc59c; }
+
+.portrait { justify-self: end; width: min(100%, 380px); aspect-ratio: 4 / 5; border-radius: 160px 160px 14px 14px; overflow: hidden; border: 3px solid var(--tan); background: var(--moss); display: grid; place-items: center; }
+.portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.portrait span { display: none; font-family: var(--font-display); font-size: 1.1rem; color: var(--sand); opacity: 0.8; }
+.portrait.empty span { display: block; }
+@media (max-width: 860px) { .portrait { justify-self: start; width: min(100%, 300px); } }
+.mapcard { background: var(--forest-deep); border: 1px solid rgba(207, 182, 139, 0.35); border-radius: 14px; padding: 18px 18px 14px; }
+.mapcard h2 { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; margin: 0 0 2px; color: var(--sand); }
+.mapcard .sub { font-size: 0.9rem; color: var(--sage); margin: 0 0 8px; }
+.mapcard svg { width: 100%; height: auto; display: block; }
+.maplegend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 0.85rem; color: #cfd8cb; margin-top: 6px; }
+.maplegend span { display: inline-flex; align-items: center; gap: 6px; }
+.maplegend i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+
+/* ---------- Focus strip ---------- */
+.focus { background: var(--forest-deep); color: var(--sand); }
+.focus .wrap { display: grid; grid-template-columns: repeat(2, 1fr); }
+.focus div.item { padding: 20px 20px 20px 0; border-right: 1px solid rgba(207, 182, 139, 0.25); padding-left: 20px; }
+.focus div.item:first-child { padding-left: 0; }
+.focus div.item:last-child { border-right: 0; }
+.focus b { display: block; font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--tan); font-variant-numeric: tabular-nums; line-height: 1.2; }
+.focus span { font-size: 0.92rem; color: #cfd8cb; }
+
+/* ---------- Sections ---------- */
+section { padding: 64px 0; }
+section + section { border-top: 1px solid var(--line); }
+.head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+h2.title { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.8rem, 3.5vw, 2.4rem); margin: 0; color: var(--forest); line-height: 1.15; }
+.head p { margin: 6px 0 0; color: var(--muted); max-width: 38em; }
+
+/* Filters */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filters button { font: inherit; font-size: 0.92rem; font-weight: 500; padding: 7px 15px; border-radius: 999px; border: 1px solid var(--moss); background: transparent; color: var(--forest); cursor: pointer; }
+.filters button:hover { background: rgba(77, 106, 79, 0.1); }
+.filters button[aria-pressed="true"] { background: var(--forest); color: var(--sand); border-color: var(--forest); }
+
+/* Cards */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 22px; }
+.card { background: var(--paper); border: 1px solid var(--line); border-top: 5px solid var(--c, var(--forest)); border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 12px; }
+.card .meta { display: flex; justify-content: space-between; gap: 12px; font-size: 0.85rem; color: var(--muted); font-weight: 500; }
+.card .meta .cat { color: var(--c, var(--forest)); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.75rem; }
+.card h3 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; line-height: 1.25; color: var(--forest-deep); }
+.card p { margin: 0; }
+.card .q { color: var(--muted); font-style: italic; }
+.card .finding { background: rgba(207, 182, 139, 0.22); border-radius: 6px; padding: 11px 13px; font-size: 0.97rem; }
+.card .finding b { font-weight: 600; }
+.card .tools { font-size: 0.85rem; color: var(--muted); }
+details { border-top: 1px solid var(--line); padding-top: 10px; }
+summary { cursor: pointer; font-weight: 600; color: var(--forest); }
+details dl { margin: 10px 0 0; display: grid; gap: 10px; }
+details dt { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--moss); font-weight: 600; }
+details dd { margin: 2px 0 0; font-size: 0.95rem; }
+.card .links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px 18px; padding-top: 4px; font-weight: 600; font-size: 0.95rem; }
+
+.more { margin-top: 36px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 24px 26px; }
+.more h3 { margin: 0 0 4px; font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; color: var(--forest); }
+.more > p { margin: 0 0 16px; color: var(--muted); font-size: 0.95rem; }
+.more ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px 32px; }
+.more li { font-size: 0.95rem; padding-left: 16px; border-left: 3px solid var(--c, var(--tan)); }
+.more li b { font-weight: 600; display: block; }
+.more li span { color: var(--muted); }
+
+/* Publications */
+.pubs { list-style: none; margin: 0; padding: 0; }
+.pubs li { display: grid; grid-template-columns: 90px 1fr; gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+.pubs li:first-child { padding-top: 0; }
+.pubs .yr { font-family: var(--font-display); font-size: 1.5rem; color: var(--moss); line-height: 1.2; }
+.pubs h3 { margin: 0 0 4px; font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; color: var(--forest-deep); }
+.pubs .cite { margin: 0 0 6px; color: var(--muted); font-size: 0.92rem; }
+.pubs .sum { margin: 0 0 8px; }
+.pubs .plinks { display: flex; gap: 18px; flex-wrap: wrap; font-weight: 600; font-size: 0.95rem; }
+
+/* Experience */
+.exp { display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px; align-items: start; }
+.jobs { list-style: none; margin: 0; padding: 0; display: grid; gap: 26px; }
+.jobs li { display: grid; grid-template-columns: 120px 1fr; gap: 20px; }
+.jobs .when { font-size: 0.88rem; color: var(--moss); font-weight: 600; padding-top: 3px; }
+.jobs h3 { margin: 0; font-size: 1.08rem; color: var(--forest-deep); }
+.jobs .org { color: var(--muted); font-size: 0.95rem; }
+.jobs p { margin: 4px 0 0; font-size: 0.96rem; }
+.side { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 24px; }
+.side h3 { margin: 0 0 10px; font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; color: var(--forest); }
+.side ul { margin: 0 0 22px; padding-left: 18px; font-size: 0.95rem; display: grid; gap: 8px; }
+.side ul:last-child { margin-bottom: 0; }
+.side li span { display: block; color: var(--muted); font-size: 0.88rem; }
+
+/* About + contact band */
+.about-band { background: var(--forest); color: var(--sand); position: relative; overflow: hidden; }
+.about-band a { color: var(--sand); }
+.about-band > .wrap { position: relative; display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; padding-top: 64px; padding-bottom: 64px; }
+.about-band h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.8rem, 3.5vw, 2.4rem); margin: 0 0 18px; color: var(--tan); }
+.about-band p { margin: 0 0 14px; color: #dfe6da; max-width: 36em; }
+.contact { background: var(--forest-deep); border: 1px solid rgba(207, 182, 139, 0.35); border-radius: 12px; padding: 24px; align-self: start; }
+.contact h3 { margin: 0 0 14px; font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; color: var(--tan); }
+.contact ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.contact li span { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sage); }
+.contact a { font-weight: 600; word-break: break-word; }
+
+footer { background: var(--forest-deep); color: var(--sage); font-size: 0.9rem; }
+footer .wrap { padding-top: 20px; padding-bottom: 28px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 860px) {
+  .hero, .exp, .about-band > .wrap { grid-template-columns: 1fr; gap: 36px; }
+  .focus .wrap { grid-template-columns: 1fr; }
+  .focus div.item { padding: 16px 0; border-right: 0; border-bottom: 1px solid rgba(207, 182, 139, 0.25); }
+  .pubs li, .jobs li { grid-template-columns: 1fr; gap: 4px; }
+}
+</style>
+</head>
+<body>
+
+<div class="band">
+  <svg class="contours" id="contours-top" aria-hidden="true"></svg>
+  <div class="wrap">
+    <nav class="top" aria-label="Main">
+      <a class="name" href="#">Lucy Krueger</a>
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero">
+      <div>
+        <div class="who">
+          <div class="role">Data Analyst<br>Durham, North Carolina</div>
+        </div>
+        <h1>I use data to tell the stories of <em>communities that get left out.</em></h1>
+        <p>I'm a data analyst with a background in city and regional planning. At the Southern Coalition for Social Justice, I collect, analyze, map, and visualize data with grassroots groups and lawyers on voting rights, environmental justice, housing, and the justice system across the South.</p>
+        <p>I care most about economic justice, affordable housing, and community development, and about making the data useful to the people it describes.</p>
+        <div class="buttons">
+          <a class="btn solid" href="#work">See my work</a>
+          <a class="btn" href="resume.pdf">Résumé</a>
+          <a class="btn" href="https://www.linkedin.com/in/lucykrueger/">LinkedIn</a>
+          <a class="btn" href="https://github.com/lucyk-scsj">GitHub</a>
+        </div>
+      </div>
+
+      <div class="portrait" id="portrait"><img src="me.jpg" alt="Lucy Krueger" onerror="this.remove(); document.getElementById('portrait').classList.add('empty');"><span>Add me.jpg</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="focus" aria-label="At a glance">
+  <div class="wrap">
+    <div class="item"><b>20+</b><span>community and legal projects at SCSJ</span></div>
+    <div class="item"><b>10</b><span>published reports, maps, tools, and articles</span></div>
+  </div>
+</div>
+
+<main>
+  <section id="work" class="wrap" aria-labelledby="work-h">
+    <div class="head">
+      <div>
+        <h2 class="title" id="work-h">Selected work</h2>
+        <p>Each project starts with a question from a community or a case. Open "How I did it" for the data and methods.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter projects" id="filters"></div>
+    </div>
+    <div class="grid" id="project-grid"></div>
+    <div class="more">
+      <h3>More projects</h3>
+      <p>Smaller pieces and supporting work from the last two years.</p>
+      <ul id="more-list"></ul>
+    </div>
+  </section>
+
+  <section id="publications" class="wrap" aria-labelledby="pub-h">
+    <div class="head"><div><h2 class="title" id="pub-h">Publications</h2></div></div>
+    <ul class="pubs" id="pub-list"></ul>
+  </section>
+
+  <section id="experience" class="wrap" aria-labelledby="exp-h">
+    <div class="head"><div><h2 class="title" id="exp-h">Experience</h2></div></div>
+    <div class="exp">
+      <ul class="jobs">
+        <li><div class="when">2024 – now</div><div><h3>Quantitative Researcher &amp; Data Analyst</h3><div class="org">Southern Coalition for Social Justice · Durham</div><p>Data collection, analysis, and GIS mapping for litigation and policy advocacy in voting rights, justice system reform, and environmental justice, working alongside grassroots organizations.</p></div></li>
+        <li><div class="when">2022 – 2024</div><div><h3>Research &amp; Teaching Assistant</h3><div class="org">UNC Chapel Hill</div><p>Led QGIS recitations in Geography, gave GIS, R, and data viz support at Davis Library, TA'd global population health, and managed a financial inclusion project for young women in Zambia.</p></div></li>
+        <li><div class="when">2023</div><div><h3>Community Engagement Intern</h3><div class="org">Self-Help Credit Union · Durham</div><p>Turned a staff survey into an annual community engagement report and led outreach for a new branch.</p></div></li>
+        <li><div class="when">2021</div><div><h3>Planning Intern</h3><div class="org">NC State Ports Authority · Wilmington</div><p>Co-authored a $1.6M U.S. DOT grant award and worked on two offshore wind task forces.</p></div></li>
+        <li><div class="when">2020 – 2022</div><div><h3>Civic Fellow</h3><div class="org">You Can Vote · Wilmington</div><p>Taught North Carolinians about voting rights and registration, mentored new fellows, and co-founded the UNCW You Can Vote club.</p></div></li>
+      </ul>
+      <aside class="side">
+        <h3>Education</h3>
+        <ul>
+          <li>Master of City &amp; Regional Planning<span>UNC Chapel Hill, 2024 · Affordable Housing &amp; Community Development</span></li>
+          <li>B.A. Economics &amp; B.A. International Studies<span>UNC Wilmington, 2022 · University Honors, Honors in Economics</span></li>
+        </ul>
+        <h3>Honors</h3>
+        <ul>
+          <li>Godschalk Fellowship in Land Use &amp; Environmental Planning<span>UNC Chapel Hill</span></li>
+          <li>Pat Leonard Senior Medallion<span>UNC Wilmington</span></li>
+          <li>Honors Global Citizen Award<span>UNC Wilmington</span></li>
+          <li>Distinguished Merit Scholarship<span>UNC Wilmington</span></li>
+        </ul>
+        <h3>Tools</h3>
+        <ul>
+          <li>ArcGIS Pro, ArcGIS Online, QGIS</li>
+          <li>R, Python, KNIME, GitHub</li>
+          <li>Tableau, Qualtrics, HTML web maps</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<div class="about-band" id="about">
+  <svg class="contours" id="contours-bottom" aria-hidden="true"></svg>
+  <div class="wrap">
+    <div>
+      <h2>About me</h2>
+      <p>I think of data as one of the best storytelling tools we have. A number on its own rarely changes anyone's mind, but a map of who lost their polling place, or a chart of which neighborhoods flood first, can. I try to make every analysis something a community member could pick up and use to tell their own story.</p>
+      <p>I'm originally from Raleigh, and the South means a lot to me. The communities I work with are ones I know and care about, and that's a big part of what motivates my work.</p>
+      <p>I live in Durham. Soccer is a big part of my life. I play, I coach youth soccer in Durham, and I'm always watching the NC Courage and the USWNT.</p>
+    </div>
+    <aside class="contact" aria-label="Contact">
+      <h3>Get in touch</h3>
+      <ul>
+        <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/lucykrueger/">linkedin.com/in/lucykrueger</a></li>
+        <li><span>GitHub (work)</span><a href="https://github.com/lucyk-scsj">github.com/lucyk-scsj</a></li>
+        <li><span>GitHub (personal)</span><a href="https://github.com/lucykrueger">github.com/lucykrueger</a></li>
+      </ul>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap"><span>© <span id="yr"></span> Lucy Krueger</span><span>Durham, NC</span></div>
+</footer>
+
+<script>
+/* ===== PROJECTS: copy a block to add one. category must be one of the FILTERS below.
+   Leave any field as "" to hide it. links: [["Button text", "https://..."]] ===== */
+const PROJECTS = [
+  {
+    title: "2026 NC General Election Data Dashboard",
+    category: "Voting rights", year: "2026",
+    question: "How do we track absentee, same-day registration, and provisional ballots every day without someone building a daily email by hand?",
+    finding: "<b>I proposed and built a dashboard</b> that pulls State Board of Elections data and saves each day's numbers automatically.",
+    tools: "Python · GitHub Pages",
+    data: "NC State Board of Elections absentee, same-day registration, and provisional ballot files. Aggregate counts only, no individual voter records.",
+    approach: "I tested it on 2024 presidential data, a high-turnout year, to catch bugs before 2026. It flags ballots that can still be fixed (like a missing witness signature) and compares request volume to past elections at the same point, county by county.",
+    impact: "It's now the team's daily source during the election, and I keep adding views as staff need them.",
+    links: [["Open the dashboard", "https://lucyk-scsj.github.io/nc-election-dashboard/"]]
+  },
+  {
+    title: "Missing Voters: North Carolina & Alabama",
+    category: "Voting rights", year: "2025–26",
+    question: "How many eligible people aren't registered or aren't voting, and who are they?",
+    finding: "<b>North Carolina has about 1.5 million \"missing voters\"</b>, eligible people who aren't registered or haven't voted recently. That's nearly 1 in 5 eligible voters. <b>Alabama has more than 815,000.</b>",
+    tools: "R · ArcGIS · qualitative coding",
+    data: "Voter registration and history files, census estimates of eligible voters, and election protection hotline records.",
+    approach: "For North Carolina I made a heat map of unregistered voters and visuals of inactive voters, and pulled quotes from the election protection hotline so voters could speak for themselves. I also checked the registration rates and race and age breakdowns.",
+    impact: "Published with Dēmos. The Alabama edition followed with Stand Up Mobile.",
+    links: [["NC report", "https://southerncoalition.org/resource/missing-voters-report/"], ["Alabama report", "https://southerncoalition.org/resource/missing-voters-alabama/"]]
+  },
+  {
+    title: "The Privilege of a Spot Zoning Claim",
+    category: "Housing & zoning", year: "2025",
+    question: "Who actually gets to use spot zoning lawsuits to block harmful projects?",
+    finding: "<b>Most spot zoning claims come from whiter, wealthier areas,</b> which pushes harmful industries toward frontline communities.",
+    tools: "Case analysis · demographics",
+    data: "Every spot zoning case available electronically, matched to the demographics around each site.",
+    approach: "I did the data analysis, sorting the cases and testing whether they came from whiter, wealthier places. Co-authored with James Huey.",
+    impact: "Published in Ecology Law Quarterly at UC Berkeley School of Law.",
+    links: [["Read the article", "https://www.ecologylawquarterly.org/print/the-privilege-of-a-spot-zoning-claim/"]]
+  },
+  {
+    title: "NC Zoning Toolkit",
+    category: "Housing & zoning", year: "2024",
+    question: "How can residents understand and weigh in on zoning decisions?",
+    finding: "<b>A plain-language guide</b> to how land use decisions get made in North Carolina and how people can push for fairer zoning.",
+    tools: "ArcGIS Pro · spatial analysis",
+    data: "Historic redlining maps and current zoning layers.",
+    approach: "My part included looking at how today's single-family zoning lines up with historic redlining. Built with the NC zoning coalition, including CleanAIRE NC, NC Black Alliance, and NC Conservation Network.",
+    impact: "",
+    links: [["See the toolkit", "https://southerncoalition.org/resource/nc-zoning-toolkit/"]]
+  },
+  {
+    title: "Flooding in the South: Rising Risk and Unequal Impact",
+    category: "Environmental justice", year: "2026",
+    question: "Who pays for flooding and failing infrastructure in the South, and what can they do about it?",
+    finding: "<b>A story map I pitched and built myself</b>, showing how flooding hits low-income communities and communities of color hardest, and what can be done.",
+    tools: "ArcGIS StoryMaps · flood and demographic data",
+    data: "Flood zone, infrastructure, and demographic data across the South.",
+    approach: "It started with mapping flood zones in West Whiteville, where people were dealing with flooding and legal fights without good information about their rights. I wanted something that explained the problem and pointed people to help.",
+    impact: "",
+    links: [["Explore the story map", "https://southerncoalition.org/resource/flooding-in-the-south-rising-risk-and-unequal-impact/"]]
+  },
+  {
+    title: "NC Solid Waste & Legislative Districts Map",
+    category: "Environmental justice", year: "2026",
+    question: "Where are North Carolina's landfills, and which legislators represent the people living near them?",
+    finding: "<b>An interactive map of landfills across the state</b>, layered over House and Senate districts.",
+    tools: "Web mapping · GitHub Pages",
+    data: "Permitted landfills by type and status, older pre-1983 sites by cleanup status, and legislative districts.",
+    approach: "Added address search, pop-ups, and counts of facilities per district so advocates can bring the right map to the right legislator.",
+    impact: "",
+    links: [["Open the map", "https://lucyk-scsj.github.io/nc-waste-map/"]]
+  },
+  {
+    title: "Honest Conversations About Crime & Safety",
+    category: "Justice reform", year: "2026",
+    question: "Crime has fallen for decades. Why do so many people think it's rising?",
+    finding: "<b>An explainer for SCSJ's Reframing Public Safety series</b> on how crime myths shape policy and what the evidence says instead.",
+    tools: "Research · crime trend data",
+    data: "Crime trends, public opinion polling, and research on incarceration, prosecution, and media coverage.",
+    approach: "I did the research on how crime has decreased over time.",
+    impact: "",
+    links: [["Read it", "https://southerncoalition.org/justice-system-reform/reframing-public-safety/honest-conversations-about-crime-safety/"]]
+  }
+];
+
+/* ===== MORE PROJECTS: [category, title, short description] ===== */
+const MORE = [
+  ["Voting rights", "Columbus County early voting", "Analysis that helped keep one of two threatened early voting sites open"],
+  ["Voting rights", "Youth turnout gap", "Guilford County"],
+  ["Voting rights", "2024 election", "Trained staff on daily data reports and wrote daily digests during early voting"],
+  ["Environmental justice", "Greenville megasite", "Mapped the proposed industrial park"],
+  ["Environmental justice", "Bingham Park, Greensboro", "Data and maps for the park's cleanup"],
+  ["Environmental justice", "White Street Landfill, Greensboro", "Maps of landfills and wastewater plants for public comment"],
+  ["Environmental justice", "Heat stress handbook", "Reviewed and added urban planning ideas"],
+  ["Housing & zoning", "Housing research", "Inclusionary zoning, community land trusts, and reparations"],
+  ["Community", "SOLVE grant review", "Reviewer for the 2024 cycle"],
+  ["Community", "Summer intern program", "Planning committee across SCSJ's five teams"]
+];
+
+/* ===== PUBLICATIONS ===== */
+const RESEARCH = [
+  { year: "2025", title: "The Privilege of a Spot Zoning Claim",
+    cite: "Huey, J. & Krueger, L. Ecology Law Quarterly 52(3), 599–638.",
+    summary: "Spot zoning claims mostly protect whiter, wealthier communities and push harmful land uses toward frontline neighborhoods. I led the data analysis.",
+    links: [["Read the article", "https://www.ecologylawquarterly.org/print/the-privilege-of-a-spot-zoning-claim/"]] },
+  { year: "2024", title: "Equitable Housing or Reparations? Unpacking Evanston's Approach to Reparations",
+    cite: "Krueger, L. Master's project, UNC Chapel Hill.",
+    summary: "A look at Evanston's housing-based reparations program and whether it works as reparations, as housing policy, or both.",
+    links: [["Read it", "https://doi.org/10.17615/k519-1r05"]] },
+  { year: "2023", title: "Systematic review: financial inclusion and young women in low- and middle-income countries",
+    cite: "Chowa, G., Manzanares, M., Wanyama, J. & Krueger, L. Commissioned by CGAP (World Bank) through UNC's Global Social Development Innovations.",
+    summary: "We reviewed the evidence on how financial inclusion programs affect young women aged 15–24. The full review wasn't released on its own, but CGAP drew on it for its working paper, which credits our team.",
+    links: [["CGAP working paper", "https://www.cgap.org/research/publication/impact-of-financial-inclusion-on-young-womens-well-being-survey-of-evidence"]] }
+];
+
+/* Category colors */
+const FILTERS = { "All": "", "Voting rights": "#2f5a43", "Housing & zoning": "#a0733f", "Environmental justice": "#5f7f4f", "Justice reform": "#7a5c3a" };
+const MORE_COLORS = { ...FILTERS, "Community": "#cfb68b" };
+
+/* ===== Rendering (no need to edit below) ===== */
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function card(p) {
+  const details = [["Data", p.data], ["Approach", p.approach], ["Impact", p.impact]].filter(x => x[1])
+    .map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("");
+  const links = (p.links || []).map(([t, u]) => `<a href="${esc(u)}">${esc(t)} →</a>`).join("");
+  return `<article class="card" style="--c:${FILTERS[p.category] || "var(--forest)"}">
+    <div class="meta"><span class="cat">${esc(p.category)}</span><span>${esc(p.year)}</span></div>
+    <h3>${esc(p.title)}</h3>
+    <p class="q">${esc(p.question)}</p>
+    <p class="finding">${p.finding}</p>
+    ${p.tools ? `<div class="tools">${esc(p.tools)}</div>` : ""}
+    ${details ? `<details><summary>How I did it</summary><dl>${details}</dl></details>` : ""}
+    ${links ? `<div class="links">${links}</div>` : ""}
+  </article>`;
+}
+
+const grid = document.getElementById("project-grid");
+const filterBox = document.getElementById("filters");
+function render(cat) {
+  grid.innerHTML = (cat === "All" ? PROJECTS : PROJECTS.filter(p => p.category === cat)).map(card).join("");
+  filterBox.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.cat === cat));
+}
+filterBox.innerHTML = Object.keys(FILTERS).map((f, i) => `<button type="button" id="filter-${i}" data-cat="${esc(f)}" aria-pressed="false">${esc(f)}</button>`).join("");
+filterBox.addEventListener("click", e => { const b = e.target.closest("button"); if (b) render(b.dataset.cat); });
+render("All");
+
+document.getElementById("more-list").innerHTML = MORE.map(([c, t, d]) =>
+  `<li style="--c:${MORE_COLORS[c] || "var(--tan)"}"><b>${esc(t)}</b><span>${esc(d)}</span></li>`).join("");
+
+document.getElementById("pub-list").innerHTML = RESEARCH.map(r => `<li>
+  <div class="yr">${esc(r.year)}</div>
+  <div><h3>${esc(r.title)}</h3><p class="cite">${esc(r.cite)}</p><p class="sum">${esc(r.summary)}</p>
+  <div class="plinks">${r.links.map(([t, u]) => `<a href="${esc(u)}">${esc(t)} →</a>`).join("")}</div></div>
+</li>`).join("");
+document.getElementById("yr").textContent = new Date().getFullYear();
+
+/* ===== Contour lines in the green bands ===== */
+function contours(id, seed) {
+  const svg = document.getElementById(id);
+  const draw = () => {
+    const w = svg.clientWidth || 1200, h = svg.clientHeight || 600;
+    svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+    let paths = "";
+    for (let i = 0; i < 14; i++) {
+      const base = h * 0.1 + i * h / 11, amp = 26 + (i % 4) * 10, f = 0.0035 + (i % 3) * 0.0011;
+      let d = `M -20 ${base.toFixed(1)}`;
+      for (let x = -20; x <= w + 20; x += 24) {
+        const y = base + Math.sin(x * f + seed + i * 0.6) * amp + Math.sin(x * f * 2.3 + i) * amp * 0.35;
+        d += ` L ${x} ${y.toFixed(1)}`;
+      }
+      paths += `<path d="${d}" fill="none" stroke="#cfb68b" stroke-opacity="${i % 4 === 0 ? 0.16 : 0.08}" stroke-width="${i % 4 === 0 ? 1.4 : 1}"/>`;
+    }
+    svg.innerHTML = paths;
+  };
+  draw(); window.addEventListener("resize", draw);
+}
+contours("contours-top", 1.3);
+contours("contours-bottom", 4.1);
+</script>
+</body>
+</html>
